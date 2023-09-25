@@ -1,50 +1,21 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        String type;
-        boolean validInput = false;
-
-        do {
-            System.out.print("Nhập đối tượng (sinh vien/cong nhan): ");
-            type = scanner.nextLine().toLowerCase();
-
-            // Check if the input is valid
-            if (type.equals("sinh vien") || type.equals("cong nhan")) {
-                validInput = true;
-            } else {
-                System.out.println("Đối tượng không hợp lệ. Vui lòng nhập lại.");
-            }
-        } while (!validInput);
-
-        System.out.print("Nhập năm sinh sống: ");
-
-        double year = scanner.nextDouble();
-
-        double price = countPrice(type, year);
-
-        System.out.printf("Giá tiền trọ: %.1f triệu%n", price);
-
-        scanner.close();
-    }
-
-    public static double countPrice(String type, double year) {
-        double price;
+    public static int countPrice(String type, double year) {
+        int price;
         if (type.equals("sinh vien")) {
-            if (year < 1) {
+            if (year <= 3) {
                 price = 5000000;
-            } else if (year <= 3) {
+            } else if (year < 7) {
                 price = 4500000;
             } else {
                 price = 3500000;
             }
             return price;
         } else if (type.equals("cong nhan")) {
-            if (year < 1) {
+            if (year <= 3) {
                 price = 6500000;
-            } else if (year <= 3) {
+            } else if (year < 7) {
                 price = 6000000;
             } else {
                 price = 5000000;
@@ -54,3 +25,18 @@ public class Main {
         return -1;
     }
 }
+
+
+    //Dành cho đối tượng là sinh viên
+    //assertEquals(-1, Main.countPrice("sinh vien", -10));
+//assertEquals(5000000, Main.countPrice("sinh vien", 2));
+//assertEquals(4500000, Main.countPrice("sinh vien", 6));
+//assertEquals(3500000, Main.countPrice("sinh vien", 37));
+//assertEquals(-1, Main.countPrice("sinh vien", 100));
+
+//Dành cho đối tượng là công nhân
+//assertEquals(-1, Main.countPrice("cong nhan", 0));
+//assertEquals(6500000, Main.countPrice("cong nhan", 1));
+//assertEquals(6000000, Main.countPrice("cong nhan", 4));
+//assertEquals(5000000, Main.countPrice("cong nhan", 30));
+//assertEquals(-1, Main.countPrice("cong nhan", 500));
